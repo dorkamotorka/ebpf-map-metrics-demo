@@ -12,7 +12,6 @@ import (
         "syscall"
         "time"            
 
-        "github.com/cilium/ebpf"
         "github.com/cilium/ebpf/rlimit"
 )
 
@@ -99,7 +98,6 @@ func main() {
         }
 
 	// ----- lpm_trie_map -----
-	// TODO: Does it have a counter?
 	type lpmKey struct {
 		Prefixlen uint32
 		Data      uint32
@@ -123,6 +121,29 @@ func main() {
 
 		if err := queuePush(objs.QueueMap, val); err != nil {
 			log.Fatalf("queue_map push: %v", err)
+		}
+	}
+	*/
+
+	// ----- stack_map -----
+	// Not yet supported to push values from user space
+	/*
+	for i := 0; i < 5; i++ {
+		val := rndU32()
+
+		if err := stackPush(objs.StackMap, val); err != nil {
+			log.Fatalf("stack_map push: %v", err)
+		}
+	}
+
+	// ----- bloom_filter_map -----
+	// Not yet supported to push values from user space
+	/*
+	for i := 0; i < 5; i++ {
+		val := rndU32()
+
+		if err := bloomPush(objs.BloomFilterMap, val); err != nil {
+			log.Fatalf("bloom_filter_map push: %v", err)
 		}
 	}
 	*/

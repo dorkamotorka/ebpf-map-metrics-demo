@@ -62,3 +62,15 @@ struct {
     __type(value, u32);
     __uint(max_entries, 10);
 } queue_map SEC(".maps");
+
+struct {
+    __uint(type, BPF_MAP_TYPE_STACK);
+    __type(value, u32);
+    __uint(max_entries, 10);
+} stack_map SEC(".maps");
+
+struct {
+    __uint(type, BPF_MAP_TYPE_BLOOM_FILTER);
+    __type(value, u32);
+    __uint(max_entries, 10);
+} bloom_filter_map SEC(".maps");
