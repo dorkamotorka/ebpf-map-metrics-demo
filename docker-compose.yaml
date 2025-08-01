@@ -1,0 +1,14 @@
+services:
+  map-metrics-exporter:
+    image: "dorkamotorka/ebpf-map-exporter:latest"
+    privileged: true
+    ports:
+      - "9090:9090"
+
+  demo:
+    depends_on:
+      map-metrics-exporter:      # still want exporter up
+        condition: service_started
+    build: .
+    image: "dorkamotorka/ebpf-map-metrics-demo:latest"
+    privileged: true
